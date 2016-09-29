@@ -16,7 +16,7 @@ $(document).on('turbolinks:load', function() {
 function submitNewMessage(){
   $('textarea#message_content').keydown(function(event) {
     if (event.keyCode == 13) {
-        App.messagesSubscription.send(event.target.value)
+      App.messagesSubscription.send({message: event.target.value})
         // var msg = event.target.value
         // var chatroomId = $("[data-chatroom]").data().chatroom
         // App.messages.send({message: msg, chatroom_id: chatroomId})
