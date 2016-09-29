@@ -1,5 +1,6 @@
 App.messagesSubscription = App.cable.subscriptions.create('MessagesChannel', {  
   received: function(data) {
+    // debugger;
     $("#messages").removeClass('hidden')
     return $('#messages').append(this.renderMessage(data));
   },
@@ -16,9 +17,10 @@ $(document).on('turbolinks:load', function() {
 function submitNewMessage(){
   $('textarea#message_content').keydown(function(event) {
     if (event.keyCode == 13) {
-      App.messagesSubscription.send({message: event.target.value})
+      // debugger;
+      App.messagesSubscription.send({message: event.target.value, chatroom_id: chatroomId})
         // var msg = event.target.value
-        // var chatroomId = $("[data-chatroom]").data().chatroom
+        var chatroomId = $("[data-chatroom]").data().chatroom
         // App.messages.send({message: msg, chatroom_id: chatroomId})
         $('[data-textarea="message"]').val(" ")
         return false;
