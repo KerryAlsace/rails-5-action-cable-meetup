@@ -5,7 +5,7 @@ class MessagesChannel < ApplicationCable::Channel
 
   def receive(payload)
     message = Message.create(user: current_user, chatroom_id: payload["chatroom_id"], content: payload["message"])
-    messages_html = ApplicationController.renderer.render(partial: 'messages/mesages')
+    messages_html = ApplicationController.renderer.render(partial: 'messages/mesages', locals: {message: message})
     ActionCable.server.broadcast("messages", messages_html)
   end
 
