@@ -3,7 +3,11 @@ class MessagesChannel < ApplicationCable::Channel
     stream_from 'messages'
   end
 
-  def receive(payload)
-    Message.create(user: current_user, chatroom_id: payload["chatroom_id"], content: payload["message"])
+  # def receive(payload)
+  #   Message.create(user: current_user, chatroom_id: payload["chatroom_id"], content: payload["message"])
+  # end
+
+  def received
+    binding.pry
   end
 end  
